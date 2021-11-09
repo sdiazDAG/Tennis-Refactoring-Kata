@@ -2,21 +2,20 @@ namespace Tennis
 {
     class TennisGame1 : ITennisGame
     {
-        private int m_score1 = 0;
         private int m_score2 = 0;
-        private string player1Name;
         private string player2Name;
+        private readonly GamePlayer1 _gamePlayer1;
 
         public TennisGame1(string player1Name, string player2Name)
         {
-            this.player1Name = player1Name;
+            _gamePlayer1 = new GamePlayer1(player1Name);
             this.player2Name = player2Name;
         }
 
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                m_score1 += 1;
+                _gamePlayer1.MScore1 += 1;
             else
                 m_score2 += 1;
         }
@@ -25,9 +24,9 @@ namespace Tennis
         {
             string score = "";
             var tempScore = 0;
-            if (m_score1 == m_score2)
+            if (_gamePlayer1.MScore1 == m_score2)
             {
-                switch (m_score1)
+                switch (_gamePlayer1.MScore1)
                 {
                     case 0:
                         score = "Love-All";
@@ -44,9 +43,9 @@ namespace Tennis
 
                 }
             }
-            else if (m_score1 >= 4 || m_score2 >= 4)
+            else if (_gamePlayer1.MScore1 >= 4 || m_score2 >= 4)
             {
-                var minusResult = m_score1 - m_score2;
+                var minusResult = _gamePlayer1.MScore1 - m_score2;
                 if (minusResult == 1) score = "Advantage player1";
                 else if (minusResult == -1) score = "Advantage player2";
                 else if (minusResult >= 2) score = "Win for player1";
@@ -56,7 +55,7 @@ namespace Tennis
             {
                 for (var i = 1; i < 3; i++)
                 {
-                    if (i == 1) tempScore = m_score1;
+                    if (i == 1) tempScore = _gamePlayer1.MScore1;
                     else { score += "-"; tempScore = m_score2; }
                     switch (tempScore)
                     {

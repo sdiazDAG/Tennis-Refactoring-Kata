@@ -2,7 +2,7 @@ namespace Tennis
 {
     class GamePlayer1
     {
-        private int m_score1 = 0;
+        private int _score1 = 0;
         private string player1Name;
 
         public GamePlayer1(string player1Name)
@@ -10,10 +10,10 @@ namespace Tennis
             this.player1Name = player1Name;
         }
 
-        public int MScore1
+        public int Score
         {
-            set { m_score1 = value; }
-            get { return m_score1; }
+            set { _score1 = value; }
+            get { return _score1; }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Tennis
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                _gamePlayer1.MScore1 += 1;
+                _gamePlayer1.Score += 1;
             else
                 m_score2 += 1;
         }
@@ -24,9 +24,9 @@ namespace Tennis
         {
             string score = "";
             var tempScore = 0;
-            if (_gamePlayer1.MScore1 == m_score2)
+            if (_gamePlayer1.Score == m_score2)
             {
-                switch (_gamePlayer1.MScore1)
+                switch (_gamePlayer1.Score)
                 {
                     case 0:
                         score = "Love-All";
@@ -43,9 +43,9 @@ namespace Tennis
 
                 }
             }
-            else if (_gamePlayer1.MScore1 >= 4 || m_score2 >= 4)
+            else if (_gamePlayer1.Score >= 4 || m_score2 >= 4)
             {
-                var minusResult = _gamePlayer1.MScore1 - m_score2;
+                var minusResult = _gamePlayer1.Score - m_score2;
                 if (minusResult == 1) score = "Advantage player1";
                 else if (minusResult == -1) score = "Advantage player2";
                 else if (minusResult >= 2) score = "Win for player1";
@@ -55,7 +55,7 @@ namespace Tennis
             {
                 for (var i = 1; i < 3; i++)
                 {
-                    if (i == 1) tempScore = _gamePlayer1.MScore1;
+                    if (i == 1) tempScore = _gamePlayer1.Score;
                     else { score += "-"; tempScore = m_score2; }
                     switch (tempScore)
                     {

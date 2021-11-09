@@ -3,11 +3,11 @@ namespace Tennis
     class GamePlayer1
     {
         private int _score1 = 0;
-        private string player1Name;
+        private string Name;
 
-        public GamePlayer1(string player1Name)
+        public GamePlayer1(string name)
         {
-            this.player1Name = player1Name;
+            this.Name = name;
         }
 
         public int Score

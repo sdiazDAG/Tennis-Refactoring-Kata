@@ -2,7 +2,6 @@ namespace Tennis
 {
     class TennisGame1 : ITennisGame
     {
-        private int m_score2 = 0;
         private readonly GamePlayer1 _gamePlayer2;
         private readonly GamePlayer1 _gamePlayer1;
 
@@ -17,14 +16,14 @@ namespace Tennis
             if (playerName == "player1")
                 _gamePlayer1.Score += 1;
             else
-                m_score2 += 1;
+                _gamePlayer2.Score += 1;
         }
 
         public string GetScore()
         {
             string score = "";
             var tempScore = 0;
-            if (_gamePlayer1.Score == m_score2)
+            if (_gamePlayer1.Score == _gamePlayer2.Score)
             {
                 switch (_gamePlayer1.Score)
                 {
@@ -43,9 +42,9 @@ namespace Tennis
 
                 }
             }
-            else if (_gamePlayer1.Score >= 4 || m_score2 >= 4)
+            else if (_gamePlayer1.Score >= 4 || _gamePlayer2.Score >= 4)
             {
-                var minusResult = _gamePlayer1.Score - m_score2;
+                var minusResult = _gamePlayer1.Score - _gamePlayer2.Score;
                 if (minusResult == 1) score = "Advantage player1";
                 else if (minusResult == -1) score = "Advantage player2";
                 else if (minusResult >= 2) score = "Win for player1";
@@ -56,7 +55,7 @@ namespace Tennis
                 for (var i = 1; i < 3; i++)
                 {
                     if (i == 1) tempScore = _gamePlayer1.Score;
-                    else { score += "-"; tempScore = m_score2; }
+                    else { score += "-"; tempScore = _gamePlayer2.Score; }
                     switch (tempScore)
                     {
                         case 0:

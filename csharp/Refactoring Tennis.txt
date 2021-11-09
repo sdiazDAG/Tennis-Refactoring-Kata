@@ -3,15 +3,21 @@
 
 # Refactoring TennisGame1
 
-## 1º)	Extract class método GetScore a la clase Score1 con m_score1 y m_score2 como propiedades
+## 1º)	Extract class método los campos m_score1 y player1name a la clase GamePlayer1 con m_score1 y player1name como propiedades de GamePlayer1 (Edición con el IDE)
 
-## 2º)	Pasar linea 39 
-		return new Pair<int, String>(total.first - tax.first, first.second);
-	a el final del método NetAmount (Edición manual)
+## 2º)  Rename m_score1 a _score y la propiedad MScore1 se renombra Score (Edición con el IDE)
 
-## 3º)	Pasar la linea 44 
-		throw new Incalculable();
-	dentro de la sentencia if (Edición manual)
+## 3º)  Rename player1name a Name (Edición con el IDE)
+
+## 4º)	Pasar la linea 6
+		private string player2Name;
+	a 
+		private readonly GamePlayer1 _gamePlayer2;
+
+	y la linea 12
+		 this.player2Name = player2Name;
+	a
+		_gamePlayer2 = new GamePlayer1(player2Name);
 
 ## 4º)	Eliminar else (Edición manual)
 

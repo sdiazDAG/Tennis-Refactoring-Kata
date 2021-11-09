@@ -3,13 +3,13 @@ namespace Tennis
     class TennisGame1 : ITennisGame
     {
         private int m_score2 = 0;
-        private string player2Name;
+        private readonly GamePlayer1 _gamePlayer2;
         private readonly GamePlayer1 _gamePlayer1;
 
         public TennisGame1(string player1Name, string player2Name)
         {
             _gamePlayer1 = new GamePlayer1(player1Name);
-            this.player2Name = player2Name;
+            _gamePlayer2 = new GamePlayer1(player2Name);
         }
 
         public void WonPoint(string playerName)

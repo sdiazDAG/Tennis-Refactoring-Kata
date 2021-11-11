@@ -59,31 +59,23 @@ namespace Tennis
             return score;
         }
 
-        private string HandleAdvantageOrWinScore()
-        {
-            string score;
-            var minusResult = _mScore1 - _mScore2;
-            if (minusResult == 1) score = "Advantage player1";
-            else if (minusResult == -1) score = "Advantage player2";
-            else if (minusResult >= 2) score = "Win for player1";
-            else score = "Win for player2";
-            return score;
-        }
-
-        private string HandleEqualScore()
-        {
-            switch (_mScore1)
+        private string HandleAdvantageOrWinScore() =>
+            (_mScore1 - _mScore2) switch
             {
-                case 0:
-                    return "Love-All";
-                case 1:
-                    return "Fifteen-All";
-                case 2:
-                    return "Thirty-All";
-                default:
-                    return "Deuce";
-            }
-        }
+                1 => "Advantage player1",
+                -1 => "Advantage player2",
+                >= 2 => "Win for player1",
+                _ => "Win for player2"
+            };
+
+        private string HandleEqualScore() =>
+            _mScore1 switch
+            {
+                0 => "Love-All",
+                1 => "Fifteen-All",
+                2 => "Thirty-All",
+                _ => "Deuce"
+            };
     }
 }
 

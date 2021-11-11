@@ -5,10 +5,6 @@ namespace Tennis
         private int m_score1 = 0;
         private int m_score2 = 0;
 
-        public TennisGame1(string player1Name, string player2Name)
-        {
-        }
-
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")

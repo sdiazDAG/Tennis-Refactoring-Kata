@@ -15,49 +15,25 @@ namespace Tennis
 
         public string GetScore()
         {
-            string score = "";
-            var tempScore = 0;
             if (_mScore1 == _mScore2)
             {
-                score = HandleEqualScore();
+                return HandleEqualScore();
             }
             else if (_mScore1 >= 4 || _mScore2 >= 4)
             {
-                score = HandleAdvantageOrWinScore();
+                return HandleAdvantageOrWinScore();
             }
-            else
-            {
-                for (var i = 1; i < 3; i++)
-                {
-                    if (i == 1) tempScore = _mScore1;
-                    else { score += "-"; tempScore = _mScore2; }
-
-                    score = HandleGeneralScore(tempScore, score);
-                }
-            }
-            return score;
+            return HandleGeneralScore(_mScore1) +  "-" + HandleGeneralScore(_mScore2);
         }
 
-        private static string HandleGeneralScore(int tempScore, string score)
-        {
-            switch (tempScore)
+        private static string HandleGeneralScore(int tempScore) =>
+            (tempScore) switch
             {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
-
-            return score;
-        }
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty"
+            };
 
         private string HandleAdvantageOrWinScore() =>
             (_mScore1 - _mScore2) switch

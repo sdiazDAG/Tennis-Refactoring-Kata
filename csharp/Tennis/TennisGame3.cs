@@ -17,16 +17,33 @@ namespace Tennis
 
         public string GetScore()
         {
-            if (_p1 < 4 && _p2 < 4 && _p1 + _p2 < 6)
+            if (!CheckBeforeAnyPlayerTillForty())
             {
                 string[] p = {"Love", "Fifteen", "Thirty", "Forty"};
                 return (_p1.Equals(_p2)) ? p[_p1] + "-All" : p[_p1] + "-" + p[_p2];
             }
 
-            if (_p1.Equals(_p2))
+            if (GetDifference().Equals(0))
                 return "Deuce";
-            var s = _p1 > _p2 ? _p1N : _p2N;
-            return Math.Abs(_p1 - _p2).Equals(1) ? "Advantage " + s : "Win for " + s;
+
+            return GetDifference().Equals(1) 
+                ? "Advantage " + GetWinningPlayerName() 
+                : "Win for " + GetWinningPlayerName();
+        }
+
+        private string GetWinningPlayerName()
+        {
+            return _p1 > _p2 ? _p1N : _p2N;
+        }
+
+        private int GetDifference()
+        {
+            return Math.Abs(_p1 - _p2);
+        }
+
+        private bool CheckBeforeAnyPlayerTillForty()
+        {
+            return _p1 >= 4 || _p2 >= 4 || _p1 + _p2 >= 6;
         }
 
         public void WonPoint(string playerName)

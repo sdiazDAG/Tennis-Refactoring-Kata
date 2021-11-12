@@ -4,14 +4,13 @@ namespace Tennis
 {
     public class TennisGame3 : ITennisGame
     {
-        private int _p2;
-        private readonly string _p2N;
-        private readonly GamePlayer3 _gamePlayer3;
+        private readonly GamePlayer3 _gamePlayer1;
+        private readonly GamePlayer3 _gamePlayer2;
 
         public TennisGame3(string player1Name, string player2Name)
         {
-            _gamePlayer3 = new GamePlayer3(player1Name);
-            _p2N = player2Name;
+            _gamePlayer1 = new GamePlayer3(player1Name);
+            _gamePlayer2 = new GamePlayer3(player2Name); ;
         }
 
         public string GetScore()
@@ -19,7 +18,7 @@ namespace Tennis
             if (!CheckBeforeAnyPlayerTillForty())
             {
                 string[] p = {"Love", "Fifteen", "Thirty", "Forty"};
-                return (_gamePlayer3.P1.Equals(_p2)) ? p[_gamePlayer3.P1] + "-All" : p[_gamePlayer3.P1] + "-" + p[_p2];
+                return (_gamePlayer1.PlayerNumber.Equals(_gamePlayer2.PlayerNumber)) ? p[_gamePlayer1.PlayerNumber] + "-All" : p[_gamePlayer1.PlayerNumber] + "-" + p[_gamePlayer2.PlayerNumber];
             }
 
             if (GetDifference().Equals(0))
@@ -32,25 +31,25 @@ namespace Tennis
 
         private string GetWinningPlayerName()
         {
-            return _gamePlayer3.P1 > _p2 ? _gamePlayer3.P1N : _p2N;
+            return _gamePlayer1.PlayerNumber > _gamePlayer2.PlayerNumber ? _gamePlayer1.PlayerName : _gamePlayer2.PlayerName;
         }
 
         private int GetDifference()
         {
-            return Math.Abs(_gamePlayer3.P1 - _p2);
+            return Math.Abs(_gamePlayer1.PlayerNumber - _gamePlayer2.PlayerNumber);
         }
 
         private bool CheckBeforeAnyPlayerTillForty()
         {
-            return _gamePlayer3.P1 >= 4 || _p2 >= 4 || _gamePlayer3.P1 + _p2 >= 6;
+            return _gamePlayer1.PlayerNumber >= 4 || _gamePlayer2.PlayerNumber >= 4 || _gamePlayer1.PlayerNumber + _gamePlayer2.PlayerNumber >= 6;
         }
 
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                _gamePlayer3.P1 += 1;
+                _gamePlayer1.PlayerNumber += 1;
             else
-                _p2 += 1;
+                _gamePlayer2.PlayerNumber += 1;
         }
 
     }

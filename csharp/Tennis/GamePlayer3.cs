@@ -7,7 +7,7 @@ namespace Tennis
             PlayerName = playerName;
         }
 
-        public int PlayerNumber { set; get; }
+        public int PlayerScore { set; get; }
 
         public string PlayerName { set; get; }
     }

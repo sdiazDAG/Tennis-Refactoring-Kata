@@ -18,7 +18,7 @@ namespace Tennis
             if (!CheckBeforeAnyPlayerTillForty())
             {
                 string[] p = {"Love", "Fifteen", "Thirty", "Forty"};
-                return (_gamePlayer1.PlayerNumber.Equals(_gamePlayer2.PlayerNumber)) ? p[_gamePlayer1.PlayerNumber] + "-All" : p[_gamePlayer1.PlayerNumber] + "-" + p[_gamePlayer2.PlayerNumber];
+                return (_gamePlayer1.PlayerScore.Equals(_gamePlayer2.PlayerScore)) ? p[_gamePlayer1.PlayerScore] + "-All" : p[_gamePlayer1.PlayerScore] + "-" + p[_gamePlayer2.PlayerScore];
             }
 
             if (GetDifference().Equals(0))
@@ -31,25 +31,25 @@ namespace Tennis
 
         private string GetWinningPlayerName()
         {
-            return _gamePlayer1.PlayerNumber > _gamePlayer2.PlayerNumber ? _gamePlayer1.PlayerName : _gamePlayer2.PlayerName;
+            return _gamePlayer1.PlayerScore > _gamePlayer2.PlayerScore ? _gamePlayer1.PlayerName : _gamePlayer2.PlayerName;
         }
 
         private int GetDifference()
         {
-            return Math.Abs(_gamePlayer1.PlayerNumber - _gamePlayer2.PlayerNumber);
+            return Math.Abs(_gamePlayer1.PlayerScore - _gamePlayer2.PlayerScore);
         }
 
         private bool CheckBeforeAnyPlayerTillForty()
         {
-            return _gamePlayer1.PlayerNumber >= 4 || _gamePlayer2.PlayerNumber >= 4 || _gamePlayer1.PlayerNumber + _gamePlayer2.PlayerNumber >= 6;
+            return _gamePlayer1.PlayerScore >= 4 || _gamePlayer2.PlayerScore >= 4 || _gamePlayer1.PlayerScore + _gamePlayer2.PlayerScore >= 6;
         }
 
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                _gamePlayer1.PlayerNumber += 1;
+                _gamePlayer1.PlayerScore += 1;
             else
-                _gamePlayer2.PlayerNumber += 1;
+                _gamePlayer2.PlayerScore += 1;
         }
 
     }
